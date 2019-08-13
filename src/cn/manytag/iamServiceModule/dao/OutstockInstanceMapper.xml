@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.manytag.iamServiceModule.dao.OutstockInstanceMapper" >
+
+    <resultMap id="BaseResultMap" type="cn.manytag.iamServiceModule.entity.OutstockInstance" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="outstockId" property="outstockId" jdbcType="BIGINT" />
+        <result column="assetId" property="assetId" jdbcType="BIGINT" />
+        <result column="instanceId" property="instanceId" jdbcType="BIGINT" />
+        <result column="sl" property="sl" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, outstockId, assetId, instanceId, sl
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from outstock_instance
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from outstock_instance
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="cn.manytag.iamServiceModule.entity.OutstockInstance" >
+        insert into outstock_instance (id, outstockId, assetId, 
+            instanceId, sl)
+        values (#{id,jdbcType=BIGINT}, #{outstockId,jdbcType=BIGINT}, #{assetId,jdbcType=BIGINT}, 
+            #{instanceId,jdbcType=BIGINT}, #{sl,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="cn.manytag.iamServiceModule.entity.OutstockInstance" >
+        insert into outstock_instance
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="outstockId != null" >
+                outstockId,
+            </if>
+            <if test="assetId != null" >
+                assetId,
+            </if>
+            <if test="instanceId != null" >
+                instanceId,
+            </if>
+            <if test="sl != null" >
+                sl,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="outstockId != null" >
+                #{outstockId,jdbcType=BIGINT},
+            </if>
+            <if test="assetId != null" >
+                #{assetId,jdbcType=BIGINT},
+            </if>
+            <if test="instanceId != null" >
+                #{instanceId,jdbcType=BIGINT},
+            </if>
+            <if test="sl != null" >
+                #{sl,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="cn.manytag.iamServiceModule.entity.OutstockInstance" >
+        update outstock_instance
+        <set >
+            <if test="outstockId != null" >
+                outstockId = #{outstockId,jdbcType=BIGINT},
+            </if>
+            <if test="assetId != null" >
+                assetId = #{assetId,jdbcType=BIGINT},
+            </if>
+            <if test="instanceId != null" >
+                instanceId = #{instanceId,jdbcType=BIGINT},
+            </if>
+            <if test="sl != null" >
+                sl = #{sl,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="cn.manytag.iamServiceModule.entity.OutstockInstance" >
+        update outstock_instance
+        set outstockId = #{outstockId,jdbcType=BIGINT},
+            assetId = #{assetId,jdbcType=BIGINT},
+            instanceId = #{instanceId,jdbcType=BIGINT},
+            sl = #{sl,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

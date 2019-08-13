@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.manytag.iamServiceModule.dao.InstanceMapper" >
+
+    <resultMap id="BaseResultMap" type="cn.manytag.iamServiceModule.entity.Instance" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="orgId" property="orgId" jdbcType="BIGINT" />
+        <result column="assetId" property="assetId" jdbcType="BIGINT" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="ty_batchId" property="ty_batchId" jdbcType="BIGINT" />
+        <result column="placeId" property="placeId" jdbcType="BIGINT" />
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="isPackage" property="isPackage" jdbcType="BIT" />
+        <result column="sl" property="sl" jdbcType="INTEGER" />
+        <result column="price" property="price" jdbcType="DECIMAL" />
+        <result column="memo" property="memo" jdbcType="VARCHAR" />
+        <result column="createUser" property="createUser" jdbcType="BIGINT" />
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="updateUser" property="updateUser" jdbcType="BIGINT" />
+        <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, orgId, assetId, code, ty_batchId, placeId, userId, isPackage, sl, price, memo, 
+        createUser, createTime, updateUser, updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from instance
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from instance
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="cn.manytag.iamServiceModule.entity.Instance" >
+        insert into instance (id, orgId, assetId, 
+            code, ty_batchId, placeId, 
+            userId, isPackage, sl, 
+            price, memo, createUser, 
+            createTime, updateUser, updateTime
+            )
+        values (#{id,jdbcType=BIGINT}, #{orgId,jdbcType=BIGINT}, #{assetId,jdbcType=BIGINT}, 
+            #{code,jdbcType=VARCHAR}, #{ty_batchId,jdbcType=BIGINT}, #{placeId,jdbcType=BIGINT}, 
+            #{userId,jdbcType=BIGINT}, #{isPackage,jdbcType=BIT}, #{sl,jdbcType=INTEGER}, 
+            #{price,jdbcType=DECIMAL}, #{memo,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, 
+            #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="cn.manytag.iamServiceModule.entity.Instance" >
+        insert into instance
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="orgId != null" >
+                orgId,
+            </if>
+            <if test="assetId != null" >
+                assetId,
+            </if>
+            <if test="code != null" >
+                code,
+            </if>
+            <if test="ty_batchId != null" >
+                ty_batchId,
+            </if>
+            <if test="placeId != null" >
+                placeId,
+            </if>
+            <if test="userId != null" >
+                userId,
+            </if>
+            <if test="isPackage != null" >
+                isPackage,
+            </if>
+            <if test="sl != null" >
+                sl,
+            </if>
+            <if test="price != null" >
+                price,
+            </if>
+            <if test="memo != null" >
+                memo,
+            </if>
+            <if test="createUser != null" >
+                createUser,
+            </if>
+            <if test="createTime != null" >
+                createTime,
+            </if>
+            <if test="updateUser != null" >
+                updateUser,
+            </if>
+            <if test="updateTime != null" >
+                updateTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="orgId != null" >
+                #{orgId,jdbcType=BIGINT},
+            </if>
+            <if test="assetId != null" >
+                #{assetId,jdbcType=BIGINT},
+            </if>
+            <if test="code != null" >
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="ty_batchId != null" >
+                #{ty_batchId,jdbcType=BIGINT},
+            </if>
+            <if test="placeId != null" >
+                #{placeId,jdbcType=BIGINT},
+            </if>
+            <if test="userId != null" >
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="isPackage != null" >
+                #{isPackage,jdbcType=BIT},
+            </if>
+            <if test="sl != null" >
+                #{sl,jdbcType=INTEGER},
+            </if>
+            <if test="price != null" >
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="memo != null" >
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="createUser != null" >
+                #{createUser,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null" >
+                #{updateUser,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="cn.manytag.iamServiceModule.entity.Instance" >
+        update instance
+        <set >
+            <if test="orgId != null" >
+                orgId = #{orgId,jdbcType=BIGINT},
+            </if>
+            <if test="assetId != null" >
+                assetId = #{assetId,jdbcType=BIGINT},
+            </if>
+            <if test="code != null" >
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="ty_batchId != null" >
+                ty_batchId = #{ty_batchId,jdbcType=BIGINT},
+            </if>
+            <if test="placeId != null" >
+                placeId = #{placeId,jdbcType=BIGINT},
+            </if>
+            <if test="userId != null" >
+                userId = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="isPackage != null" >
+                isPackage = #{isPackage,jdbcType=BIT},
+            </if>
+            <if test="sl != null" >
+                sl = #{sl,jdbcType=INTEGER},
+            </if>
+            <if test="price != null" >
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="memo != null" >
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="createUser != null" >
+                createUser = #{createUser,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                createTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null" >
+                updateUser = #{updateUser,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null" >
+                updateTime = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="cn.manytag.iamServiceModule.entity.Instance" >
+        update instance
+        set orgId = #{orgId,jdbcType=BIGINT},
+            assetId = #{assetId,jdbcType=BIGINT},
+            code = #{code,jdbcType=VARCHAR},
+            ty_batchId = #{ty_batchId,jdbcType=BIGINT},
+            placeId = #{placeId,jdbcType=BIGINT},
+            userId = #{userId,jdbcType=BIGINT},
+            isPackage = #{isPackage,jdbcType=BIT},
+            sl = #{sl,jdbcType=INTEGER},
+            price = #{price,jdbcType=DECIMAL},
+            memo = #{memo,jdbcType=VARCHAR},
+            createUser = #{createUser,jdbcType=BIGINT},
+            createTime = #{createTime,jdbcType=TIMESTAMP},
+            updateUser = #{updateUser,jdbcType=BIGINT},
+            updateTime = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
