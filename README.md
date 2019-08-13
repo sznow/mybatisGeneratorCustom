@@ -1,8 +1,7 @@
 # mybatisGeneratorCustom
 mybatis逆向工程
 
-使用官方网站的mapper自动生成工具mybatis-generator-core-1.3.2来生成pojo类和mapper映射文件。但与个人有些习惯不一致，
-所以对源码做了些修改，修改内容如下：    
+使用官方网站的mapper自动生成工具mybatis-generator-core-1.3.2来生成pojo类和mapper映射文件。
 	1.生成的*mapper.xml文件中使用4个空格来缩进     
 	2.生成的*mapper.xml文件中每个元素间增加一空行，如insert,update,delete等之间增加一空行      
 	3.去掉*mapper.xml文件中生成的注释      
